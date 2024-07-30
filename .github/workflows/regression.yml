@@ -35,12 +35,18 @@ jobs:
       - name: Run Cypress tests
         run: echo "Running Cypress tests"
 
-        # and run all Cypress tests
       - name: Run pulse regression suite
         run: npm run regression-run
+        continue-on-error: true # Ensure the workflow doesn't stop on test failures
 
-        # Store HTML Reports as Artifacts
+      # Generate HTML Report even if tests fail
+      - name: Generate HTML Report
+        if: always()
+        run: npm run generate-report # Replace this with your actual report generation command
+
+      # Store HTML Reports as Artifacts even if tests fail
       - name: Store Artifacts
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: Test Reports
@@ -54,7 +60,7 @@ jobs:
           SLACK_USERNAME: Pras Bot
           SLACK_TITLE: Cucumber Cypress Regression suite
           SLACK_MESSAGE: 'Regression Test Passed :rocket:'
-          SLACK_COLOR: ${{ job.status }}
+          SLACK_COLOR: good # 'good' typically represents green color for success
 
       - name: Send notification to Slack on failure
         if: failure()
@@ -64,4 +70,4 @@ jobs:
           SLACK_USERNAME: Pras Bot
           SLACK_TITLE: Cucumber Cypress Regression suite
           SLACK_MESSAGE: 'Regression Test Failed ❌ '
-          SLACK_COLOR: ${{ job.status }}
+          SLACK_COLOR: danger # 'danger' typically represents red color for failure

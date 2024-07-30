@@ -21,11 +21,11 @@ To get started, clone the project by following these steps:
 1. Install Node.js if you haven't already. [Download Node.js](https://nodejs.org/en/download)
 2. Install Visual Studio Code or your preferred IDE. [Download VS Code](https://code.visualstudio.com/download)
 3. Open a terminal and navigate to your project directory:
-   ```bash
-   cd path/to/your/directory/cypress
+   ```
+   cd to/your-cypress-directory
    ```
 4. Clone the repository:
-   ```bash
+   ```
    git clone https://github.com/prasadkotamsettiCS/cucumber-typescript-ui-api-testing.git
    ```
 
@@ -42,6 +42,14 @@ Follow these steps to install Cypress on macOS, Linux, or Windows:
    ```
    npm install cypress --save-dev
    ```
+
+### Install typescript
+
+```
+npm install --save-dev typescript
+npm install --save-dev @types/cypress
+npm install --save-dev @types/cucumber
+```
 
 2. Install the following Visual Studio Code plugins to enhance your development experience:
    - Cucumber (Gherkin) Full Support (Alexander Krechik)
