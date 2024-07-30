@@ -1,0 +1,67 @@
+name: Pulse Regression Test Suite
+
+on:
+  schedule:
+    # Set to run it at midnight every day.
+    - cron: '0 0 * * *'
+
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y xvfb libnss3 libgtk-3-0 libgbm-dev libasound2  # Install libasound2 for libasound.so.2
+
+      - name: Install Cypress
+        run: npm install cypress
+
+      - name: Run Cypress tests
+        run: echo "Running Cypress tests"
+
+        # and run all Cypress tests
+      - name: Run pulse regression suite
+        run: npm run regression-run
+
+        # Store HTML Reports as Artifacts
+      - name: Store Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Reports
+          path: reports
+
+      - name: Send notification to Slack on success
+        uses: rtCamp/action-slack-notify@v2
+        if: success()
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: Pras Bot
+          SLACK_TITLE: Cucumber Cypress Regression suite
+          SLACK_MESSAGE: 'Regression Test Passed :rocket:'
+          SLACK_COLOR: ${{ job.status }}
+
+      - name: Send notification to Slack on failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: Pras Bot
+          SLACK_TITLE: Cucumber Cypress Regression suite
+          SLACK_MESSAGE: 'Regression Test Failed ❌ '
+          SLACK_COLOR: ${{ job.status }}

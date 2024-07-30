@@ -1,0 +1,12 @@
+
+# Ignore html reports
+/cypress/reports
+
+# Ignore node_modules
+/node_modules
+
+# Ignore misclaneous local files
+.DS_Store
+/technicalTask_Part_One.md
+wTW_Task.MD
+/wTW_Task

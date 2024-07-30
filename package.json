@@ -1,0 +1,49 @@
+{
+  "name": "messfixcucumber",
+  "version": "1.0.0",
+  "description": "Cypress Automation framework",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "clear-reports": "rm -rf cypress/reports && rm -rf cypress/screenshots && rm -rf cypress/videos",
+    "regression-run": "npm run clear-reports && npx cypress run && node cucumber-html-report.js",
+    "regression-headed-chrome": "cypress run --headed --browser chrome && node cucumber-html-report.js",
+    "regression-headless-firefox": "npm clear-reports && cypress run --browser firefox && node cucumber-html-report.js",
+    "smoke-headless-chrome": "cypress run -e TAGS='@smoke' && node cucumber-html-report.js",
+    "user-search-journies": "cypress run --spec cypress/e2e/testCases/userJournies && node cucumber-html-report.js",
+    "cypress-multi-browser": "cypress run regression-headless --browser firefox && cypress run regression-headed --browser edge"
+  },
+  "keywords": [
+    "Cucumber",
+    "Automation"
+  ],
+  "author": "Pras",
+  "license": "ISC",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "ts-loader": "^9.4.4"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-formatter",
+      "output": "cypress/reports/cucumber-json/cucumber-report.json"
+    }
+  },
+  "devDependencies": {
+    "cypress": "^13.13.1",
+    "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
+    "multiple-cucumber-html-reporter": "^3.7.0"
+  }
+}
