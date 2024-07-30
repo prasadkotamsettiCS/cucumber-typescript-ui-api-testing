@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Test Reports
-          path: reports
+          path: cypress/reports/html-multi-report
 
       - name: Send notification to Slack on success
         uses: rtCamp/action-slack-notify@v2
