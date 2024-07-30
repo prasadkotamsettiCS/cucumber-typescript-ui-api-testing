@@ -14,7 +14,3 @@ Then(
     contactusPage.assertContactUsFormInvalidErrorMessage(validTextError);
   },
 );
-
-Then(/^I see an error message for the required field "([^"]*)"$/, (validTextError: number) => {
-  contactusPage.assertContactUsFormInvalidErrorMessage(23);
-});

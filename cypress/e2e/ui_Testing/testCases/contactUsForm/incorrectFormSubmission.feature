@@ -6,4 +6,4 @@ Feature: WTW Contact us form submission
     Given I open the WTW home page
     When I click on the Contact Us button
     When I click on the Submit button on the Contact Us page
-    Then I see an error message for the required field "enter first name"
+    Then I should see an error message for the required field "enter first name"
