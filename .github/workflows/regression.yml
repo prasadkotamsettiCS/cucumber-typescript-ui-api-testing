@@ -37,12 +37,7 @@ jobs:
 
       - name: Run pulse regression suite
         run: npm run regression-run
-        continue-on-error: true # Ensure the workflow doesn't stop on test failures
-
-      # Generate HTML Report even if tests fail
-      - name: Generate HTML Report
-        if: always()
-        run: npm run generate-report # Replace this with your actual report generation command
+        continue-on-error: true # Ensure the workflow doesn't stop on test failuresfix-fail-report 
 
       # Store HTML Reports as Artifacts even if tests fail
       - name: Store Artifacts
