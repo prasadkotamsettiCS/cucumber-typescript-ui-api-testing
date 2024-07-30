@@ -12,7 +12,7 @@ class ContactusPage {
     );
   }
 
-  assertContactUsFormInvalidErrorMessage(validTextError: string) {
+  assertContactUsFormInvalidErrorMessage(validTextError: number) {
     genericMethods.assertElementText(
       locators.contactUsPageLocators.contactUsFormInvalidErrorMessageLocator,
       validTextError,
