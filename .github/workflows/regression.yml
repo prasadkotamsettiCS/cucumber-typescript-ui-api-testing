@@ -1,4 +1,4 @@
-name: Pulse Regression Test Suite
+name: Regression Test Suite
 
 on:
   schedule:
