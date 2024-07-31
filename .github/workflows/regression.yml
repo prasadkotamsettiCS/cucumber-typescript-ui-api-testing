@@ -4,7 +4,6 @@ on:
   schedule:
     # Set to run it at midnight every day.
     - cron: '0 0 * * *'
-
   pull_request:
     branches:
       - '**'
@@ -33,11 +32,11 @@ jobs:
         run: npm install cypress
 
       - name: Run Cypress tests
-        run: echo "Running Cypress tests"
-
-      - name: Run pulse regression suite
+        env:
+          CYPRESS_USERNAME: ${{ secrets.USERNAME }}
+          CYPRESS_PASSWORD: ${{ secrets.PASSWORD }}
         run: npm run regression-run
-        continue-on-error: true # Ensure the workflow doesn't stop on test failuresfix-fail-report 
+        continue-on-error: true # Ensure the workflow doesn't stop on test failures
 
       # Store HTML Reports as Artifacts even if tests fail
       - name: Store Artifacts

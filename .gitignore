@@ -1,6 +1,8 @@
 
 # Ignore html reports
 /cypress/reports
+/cypress/screenshots/**/*.png
+
 
 # Ignore node_modules
 /node_modules
@@ -10,3 +12,5 @@
 /technicalTask_Part_One.md
 wTW_Task.MD
 /wTW_Task
+
+
