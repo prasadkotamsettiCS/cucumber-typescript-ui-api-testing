@@ -12,5 +12,9 @@
 /technicalTask_Part_One.md
 wTW_Task.MD
 /wTW_Task
+node_modules/
+dist/
+build/
+*.html
 
 

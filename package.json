@@ -23,10 +23,10 @@
   "license": "ISC",
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
-    "ts-loader": "^9.4.4",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",
     "braces": ">=3.0.3",
-    "semver": ">=7.5.2"
+    "semver": ">=7.5.2",
+    "ts-loader": "^9.4.4"
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": "cypress/support/step_definitions/**/*.ts",
